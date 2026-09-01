@@ -13,3 +13,5 @@ João Pedro Simplicio de Oliveira
 Matheus Cabrera Spiguel
 
 Arthur Guilherme Hipólito
+
+Kauã Da Silva Pedroso
