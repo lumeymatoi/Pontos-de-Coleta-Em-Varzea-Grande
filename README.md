@@ -15,3 +15,5 @@ Matheus Cabrera Spiguel
 Arthur Guilherme Hipólito
 
 Kauã Da Silva Pedroso
+
+Alvaro Dornelas de Carvalho Vilaça
