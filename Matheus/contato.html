@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sugerir um ponto | Ponto de coleta</title>
+  </head>
+  <body>
+    <header>
+      <a href="#conteudo">Pular para o conteúdo</a>
+      <h1>Ponto de coleta</h1>
+      <nav aria-label="Navegação principal">
+        <a href="index.html">Ponto de coleta</a>
+        <a href="materiais.html">Materias</a>
+        <a href="contato.html" aria-current="page">Sugerir um ponto</a>
+      </nav>
+    </header>
+    <main id="conteudo">
+      <h2>Sugerir um ponto de coleta novo</h2>
+      <p>
+        Conhece um ponto de coleta que não está no catalogo? Aqui vai entrar o
+        formulário que recebe a sugestão e a manda para quem cuida do site.
+      </p>
+    </main>
+    <form id="suggestion-form">
+      <p>
+        <label for="name">Nome completo</label>
+        <input type="text" id="name" name="name" required minlength="3" />
+      </p>
+      <p>
+        <label for="email">Seu email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+        />
+      </p>
+      <p>
+        <label for="phone">Telefone com DDD</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          pattern="[0-9]{11}"
+          inputmode="numeric"
+          placeholder="65999999999"
+        />
+      </p>
+      <p>
+        <label for="preffered-material">Material que você procura</label>
+        <select id="preffered-material" name="preffered-material"></select>
+        <option value="all">Todos</option>
+        <option value="battsery">Pilha e bateria</option>
+        <option value="cokking-oil">Óleo de cozinha</option>
+        <option value="eletronics">Eletrônico</option>
+        <option value="medicine">Remédio</option>
+        <option value="glass">Vidro</option>
+        <option value="recycleble">Reciclável</option>
+      </p>
+      <p>
+        <label for="neighborhood">Bairro do ponto</label>
+        <input type="text" id="neighborhood" name="neighborhood" />
+      </p>
+      <p>
+        <labe for="message">Endereço e materiais aceitos</labe>
+        <textarea id="message" name="message" rows="5"></textarea>
+      </p>
+      <p>
+        <button type="submit">Enviar</button>
+      </p>
+    </form>
+
+    <footer>
+      <p>Ponto de Coleta, Várzea Grande, MT</p>
+      <p><a href="contato.hhtml"> Sugerir um ponto novo</a></p>
+    </footer>
+  </body>
+</html>
