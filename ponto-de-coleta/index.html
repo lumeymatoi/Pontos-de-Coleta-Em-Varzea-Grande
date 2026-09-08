@@ -2,13 +2,16 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="css/estilo.css" />
+
     <title>Ponto de Coleta</title>
   </head>
   <body>
-    <header>
-      <a href="#conteudo">Pular para o conteúdo</a>
-      <h1>Ponto de Coleta</h1>
-      <nav aria="label" ="Navegação principal">
+    <a href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <h1 class="brand">Ponto de Coleta</h1>
+      <nav class="main-nav" aria-label="Navegação principal">
         <a href="index.html" aria-current="page">Ponto de Coleta</a>
         <a href="materiais.html">Materiais</a>
         <a href="contato.html">Sugerir um ponto</a>
@@ -17,7 +20,7 @@
 
     <main id="conteudo">
       <h2>Pontos de coleta em Várzea Grande</h2>
-      <p>
+      <p class="intro">
         Pilha velha, óleo de cozinha usado, eletrônico quebrado, remédio
         vencido, vidro e reciclavél não podem ir no lixo comum. Digite o CEP do
         seu bairro e veja onde entregar cada um desses materiais em Várzea
@@ -28,7 +31,14 @@
     <section aria-label="Buscar pontos de coleta pelo CEP">
       <p>
         <label for="zip-code">Buscar pontos próximo pelo CEP</label>
-        <input type="text" id="zip-code" name="zip-code" inputmode="numeric"placeholder="78118900" maxlength="9" />
+        <input
+          type="text"
+          id="zip-code"
+          name="zip-code"
+          inputmode="numeric"
+          placeholder="78118900"
+          maxlength="9"
+        />
       </p>
       <p>
         <button type="button" id="search-button">Buscar</button>
@@ -45,19 +55,24 @@
       <button type="button" data-material="recyclable">Reciclável</button>
     </p>
     <ul id="catalog">
-      <li>
+      <li class="card" data-materials="battery electronics glass recyclable">
         <h3>Ecoponto Centro Sul</h3>
         <p>Rua Goiás, 120, Centro-Sul</p>
         <p>Segunda a Sexta, 8h às 17h</p>
       </li>
-      <li>
+      <li class="card" data-materials="battery electronics glass recyclable">
         <h3>Farmácia Solidária Cristo Rei</h3>
         <p>Avenida Brasil, 845, Cristo Rei</p>
         <p>Segunda a sábado, 7h às 19h</p>
       </li>
+      <li class="card" data-materials="battery electronics glass recyclable">
+        <h3>Mercado Ponte Nova</h3>
+        <p>Avenida da FEB, 310, Ponte Nova</p>
+        <p>Segunda a sábado, 7h às 21h</p>
+      </li>
     </ul>
 
-    <footer>
+    <footer class ="site-footer">
       <p>Ponto de Coleta, Várzea Grande, MT.</p>
       <p><a href="contato.html">Sugerir um ponto novo</a></p>
     </footer>
