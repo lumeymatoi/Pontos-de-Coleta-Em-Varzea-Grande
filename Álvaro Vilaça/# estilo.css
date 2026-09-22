@@ -1,10 +1,4 @@
-/* Ponto de Coleta, folha de estilo do projeto.
-   Aula 4: reset, variáveis, tipografia, cor e modelo de caixa.
-   O layout com Flexbox e Grid entra na aula 5, e a responsividade na 6. */
 
-/* Reset. Zera a margem e o recheio que cada navegador aplica por conta
-   própria, e troca a conta do modelo de caixa para o mundo inteiro. */
-*,
 *::before,
 *::after {
   margin: 0;
