@@ -1,171 +1,306 @@
-body {
- background: #eef1fa;
-}
+/* Ponto de Coleta, folha de estilo do projeto.
+   Aula 4: reset, variáveis, tipografia, cor e modelo de caixa.
+   O layout com Flexbox e Grid entra na aula 5, e a responsividade na 6. */
+
+/* Reset. Zera a margem e o recheio que cada navegador aplica por conta
+   própria, e troca a conta do modelo de caixa para o mundo inteiro. */
 *,
 *::before,
 *::after {
- margin: 0;
- padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.card {
- width: 300px;
- padding: 1rem;
- border: 1px solid #c3e1ea;
-}
-<li class="card" data-materials="battery electronics glass recyclable">
-*,
-*::before,
-*::after {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
-}
+
+/* Paleta "console retrô": azul frio para a estrutura, carbono quase preto
+   para as barras de comando, e uma única cor quente reservada para ação.
+   Cor quente nunca aparece decorativa, só onde o clique avança alguma
+   coisa. */
 :root {
- --color-canvas: #7a8aba;
- --color-indigo: #3d4f97;
- --color-carbon: #21242e;
- --color-surface: #eef1fa;
- --color-text: #21242e;
- --color-text-light: #ffffff;
- --color-action: #f68d1f;
- --color-accent: #ecab37;
- --color-border: #c3cdea;
- --color-muted: #55618f;--font-body: Arial, Helvetica, sans-serif;
- --space-1: 0.5rem;
- --space-2: 1rem;
- --space-3: 2rem;
- --radius: 8px;
- --radius-pill: 999px;
- --shadow: 0 1px 3px rgba(33, 36, 46, 0.15);
+  --color-canvas: #7a8aba;
+  --color-indigo: #3d4f97;
+  --color-carbon: #21242e;
+  --color-surface: #eef1fa;
+  --color-text: #21242e;
+  --color-text-light: #ffffff;
+  --color-action: #f68d1f;
+  --color-accent: #ecab37;
+  --color-border: #c3cdea;
+  --color-muted: #55618f;
+
+  --font-body: Arial, Helvetica, sans-serif;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+
+  --radius: 8px;
+  --radius-pill: 999px;
+  --shadow: 0 1px 3px rgba(33, 36, 46, 0.15);
 }
 
 body {
- font-family: var(--font-body);
- color: var(--color-text);
- background: var(--color-surface);
- line-height: 1.5;
-}h1,
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-surface);
+  line-height: 1.5;
+}
+
+h1,
 h2,
 h3 {
- color: var(--color-indigo);
- line-height: 1.2;
- text-transform: uppercase;
- letter-spacing: 0.5px;
+  color: var(--color-indigo);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
 h2 {
- font-size: 1.5rem;
- padding-bottom: var(--space-1);
- border-bottom: 3px solid var(--color-indigo);
+  font-size: 1.5rem;
+  padding-bottom: var(--space-1);
+  border-bottom: 3px solid var(--color-indigo);
 }
+
 h3 {
- font-size: 1.1rem;
- text-transform: none;
- letter-spacing: normal;
+  font-size: 1.1rem;
+  text-transform: none;
+  letter-spacing: normal;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Cabeçalho e rodapé, as duas barras escuras da página. */
 .site-header,
 .site-footer {
- background: var(--color-carbon);
- color: var(--color-text-light);
- padding: var(--space-2) var(--space-3);
+  background: var(--color-carbon);
+  color: var(--color-text-light);
+  padding: var(--space-2) var(--space-3);
 }
+
 .brand {
- display: inline-block;
- background: var(--color-text-light);
- color: var(--color-action);
- font-size: 1.1rem;
- font-weight: 900;
- letter-spacing: 1px;
- padding: 0.25rem 1rem;
- border-radius: var(--radius-pill);
-}main {
- padding: var(--space-3);
- background: var(--color-text-light);
+  display: inline-block;
+  background: var(--color-text-light);
+  color: var(--color-action);
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 0.25rem 1rem;
+  border-radius: var(--radius-pill);
 }
+
+.main-nav a,
+.site-footer a {
+  color: var(--color-accent);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+}
+
+.main-nav a:hover,
+.site-footer a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.main-nav a[aria-current="page"] {
+  color: var(--color-text-light);
+}
+
+/* Área de conteúdo. O espaço entre blocos irmãos sai de uma regra só. */
+main {
+  padding: var(--space-3);
+  background: var(--color-text-light);
+  grid-area: content; 
+}
+
 main > * + * {
- margin-top: var(--space-3);
+  margin-top: var(--space-3);
 }
+
+/* Texto de abertura da página inicial. */
 .intro {
- background: var(--color-canvas);
- color: var(--color-text-light);
- padding: var(--space-3);
- border-radius: var(--radius);
- border-bottom: 4px solid var(--color-action);
- box-shadow: var
- .cards {
+  background: var(--color-canvas);
+  color: var(--color-text-light);
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  border-bottom: 4px solid var(--color-action);
+  box-shadow: var(--shadow);
+}
+
+/* O reset zerou o recheio do ol, e o número ficaria fora da caixa. */
+.steps {
+  list-style-position: inside;
+}
+
+.steps li + li {
+  margin-top: var(--space-1);
+}
+
+.cards {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: var(--space-2);
  list-style: none;
 }
+
 .card {
- background: var(--color-text-light);
- border: 1px solid var(--color-border);
- border-bottom: 3px solid var(--color-indigo);
- border-radius: var(--radius);
- box-shadow: var(--shadow);
- padding: var(--space-2);
+  background: var(--color-text-light);
+  border: 1px solid var(--color-border);
+  border-bottom: 3px solid var(--color-indigo);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-2);
 }
+
 .card + .card {
- margin-top: var(--space-2);
+  margin-top: var(--space-2);
 }
+
 .card .schedule {
- color: var(--color-muted);
+  color: var(--color-muted);
 }
-.steps {
- list-style-position: inside;
-}
+
+/* Tabela de materiais. */
 .materials-table {
- width: 100%;
- border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
+
 .materials-table caption {
- caption-side: top;
- text-align: left;
- font-weight: bold;
- margin-bottom: var(--space-1);
+  caption-side: top;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: var(--space-1);
 }
+
 .materials-table th,
 .materials-table td {
- text-align: left;
- padding: var(--space-1);
+  text-align: left;
+  padding: var(--space-1);
 }
+
 .materials-table thead th {
- background: var(--color-indigo);
- color: var(--color-text-light);
- text-transform: uppercase;
- font-size: 0.85rem;
+  background: var(--color-indigo);
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  font-size: 0.85rem;
 }
+
 .materials-table tbody tr:nth-child(even) {
- background: var(--color-surface);
+  background: var(--color-surface);
 }
+
+.materials-table tbody th,
+.materials-table tbody td {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Campos do formulário e da busca por CEP. */
 .field {
- margin-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
 }
+
 .field label {
- display: block;
- font-weight: bold;
- margin-bottom: 0.25rem;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
 }
+
 .field input,
 .field select,
 .field textarea {
- font: inherit;
- padding: 0.5rem;
- border: 1px solid var(--color-border);
- border-radius: var(--radius);
+  font: inherit;
+  padding: 0.5rem;
+  background: var(--color-text-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
 }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--color-indigo);
+}
+
+/* Botões. O neutro é azul; a cor quente fica para quem avança alguma
+   coisa, que aqui são Buscar e Enviar sugestão. */
 button {
- font: inherit;
- font-weight: bold;
- text-transform: uppercase;
- padding: 0.5rem 1rem;
- border: none;
- border-radius: var(--radius);
- background: var(--color-indigo);
- color: var(--color-text-light);
- cursor: pointer;
+  font: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-indigo);
+  color: var(--color-text-light);
+  cursor: pointer;
+  box-shadow: var(--shadow);
 }
+
+button:hover {
+  filter: brightness(1.1);
+}
+
 #search-button,
 button[type="submit"] {
- background: var(--color-action);
+  background: var(--color-action);
 }
-h3 {
- color: #d0021b;
+
+.filter {
+  background: var(--color-text-light);
+  color: var(--color-indigo);
+  border: 2px solid var(--color-border);
+  box-shadow: none;
+}
+
+.filter:hover {
+  border-color: var(--color-indigo);
+  filter: none;
+}
+.page {
+  max-width: 70rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+  "header"
+  "content"
+  "footer";
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+}
+ 
+.site-header {
+  grid-area: header;display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+
+}
+.main-nav {
+ display: flex;
+ flex-wrap: wrap;
+ gap: var(--space-2);
+}
+
+.site-footer {
+   grid-area: header;display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+
+}
+.main-nav {
+ display: flex;
+ flex-wrap: wrap;
+ gap: var(--space-2);
 }
