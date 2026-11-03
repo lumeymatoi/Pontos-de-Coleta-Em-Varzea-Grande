@@ -1,1 +1,46 @@
 
+import { toCollectionPoints } from "./js/CollectionPoint.js";
+
+const RECORDS = [
+  {
+    id: 1,
+    name: "Ecoponto Centro-Sul",
+    neighborhood: "Centro-Sul",
+    address: "Rua Goiás, 120",
+    zipCode: "78135-603",
+    materials: ["battery", "electronics", "glass", "recyclable"],
+    schedule: "Segunda a sexta, 8h às 17h",
+  },
+  {
+    id: 2,
+    name: "Farmácia Solidária Cristo Rei",
+    neighborhood: "Cristo Rei",
+    address: "Avenida Brasil, 845",
+    zipCode: "78117-030",
+    materials: ["medicine"],
+    schedule: "Segunda a sábado, 7h às 19h",
+  },
+  {
+    id: 3,
+    name: "Mercado Ponte Nova",
+    neighborhood: "Ponte Nova",
+    address: "Avenida da FEB, 310",
+    zipCode: "78115-005",
+    materials: ["battery", "cooking-oil", "glass", "recyclable"],
+    schedule: "Segunda a sábado, 7h às 21h",
+  },
+];
+
+const points = toCollectionPoints(RECORDS);
+
+console.table(
+  points.map((point) => ({
+    nome: point.name,
+    endereco: point.fullAddress(),
+    materiais: point.materials.length,
+  }))
+);
+
+console.log(points[0].mapUrl());
+console.log("Centro-Sul bate com centro-sul?", points[0].isIn("  centro-sul  "));
+
