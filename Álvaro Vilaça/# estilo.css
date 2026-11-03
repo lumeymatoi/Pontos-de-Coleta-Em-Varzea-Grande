@@ -1,4 +1,11 @@
+/* Ponto de Coleta, folha de estilo do projeto.
+   Aula 4: reset, variáveis, tipografia, cor e modelo de caixa.
+   Aula 5: layout da página com Grid, e das peças com Flexbox.
+   A responsividade entra na aula 6. */
 
+/* Reset. Zera a margem e o recheio que cada navegador aplica por conta
+   própria, e troca a conta do modelo de caixa para o mundo inteiro. */
+*,
 *::before,
 *::after {
   margin: 0;
@@ -66,23 +73,82 @@ img {
   height: auto;
 }
 
-/* Cabeçalho e rodapé, as duas barras escuras da página. */
+/* Anel de foco do teclado. :focus-visible aparece para quem navega por
+   Tab e fica quieto no clique de mouse. */
+:focus-visible {
+  outline: 3px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+/* Link que pula o menu repetido e leva direto ao conteúdo. Fica fora da
+   tela até receber o foco. */
+.skip-link {
+  position: absolute;
+  top: var(--space-1);
+  left: -100vw;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-surface);
+  color: var(--color-indigo);
+  border: 2px solid var(--color-indigo);
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: var(--space-1);
+}
+
+/* Esqueleto da página, com Grid. Uma coluna, três faixas nomeadas, e a
+   faixa do meio em 1fr para empurrar o rodapé até o fim da tela. */
+.page {
+  max-width: 70rem;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+}
+
+/* Cabeçalho e rodapé, as duas barras escuras da página. Cada um ocupa a
+   sua faixa no Grid, e por dentro é um Flexbox de eixo horizontal. */
 .site-header,
 .site-footer {
   background: var(--color-carbon);
   color: var(--color-text-light);
   padding: var(--space-2) var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.site-header {
+  grid-area: header;
+}
+
+.site-footer {
+  grid-area: footer;
 }
 
 .brand {
   display: inline-block;
-  background: var(--color-text-light);
-  color: var(--color-action);
+  background: var(--color-action);
+  color: var(--color-carbon);
   font-size: 1.1rem;
   font-weight: 900;
   letter-spacing: 1px;
   padding: 0.25rem 1rem;
   border-radius: var(--radius-pill);
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .main-nav a,
@@ -108,9 +174,9 @@ img {
 
 /* Área de conteúdo. O espaço entre blocos irmãos sai de uma regra só. */
 main {
+  grid-area: content;
   padding: var(--space-3);
   background: var(--color-text-light);
-  grid-area: content; 
 }
 
 main > * + * {
@@ -136,14 +202,21 @@ main > * + * {
   margin-top: var(--space-1);
 }
 
+/* Catálogo de pontos. Uma coluna é o padrão, e as três colunas entram
+   na consulta de mídia do fim do arquivo. */
 .cards {
- display: grid;
- grid-template-columns: repeat(3, 1fr);
- gap: var(--space-2);
- list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  list-style: none;
 }
 
+/* Cada cartão é um Flexbox de coluna, e o horário desce para o pé com
+   margin-top: auto. É isso que alinha os três horários na mesma altura,
+   mesmo com nomes de tamanhos diferentes. */
 .card {
+  display: flex;
+  flex-direction: column;
   background: var(--color-text-light);
   border: 1px solid var(--color-border);
   border-bottom: 3px solid var(--color-indigo);
@@ -152,12 +225,9 @@ main > * + * {
   padding: var(--space-2);
 }
 
-.card + .card {
-  margin-top: var(--space-2);
-}
-
 .card .schedule {
   color: var(--color-muted);
+  margin-top: auto;
 }
 
 /* Tabela de materiais. */
@@ -195,15 +265,32 @@ main > * + * {
   border-bottom: 1px solid var(--color-border);
 }
 
-/* Campos do formulário e da busca por CEP. */
+/* Mapa incorporado do OpenStreetMap. */
+.map {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+figcaption {
+  margin-top: var(--space-1);
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+/* Campos do formulário e da busca por CEP. Cada campo é uma coluna com
+   rótulo em cima, e o espaço entre os dois vem de gap. */
 .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
   margin-bottom: var(--space-2);
 }
 
 .field label {
-  display: block;
   font-weight: bold;
-  margin-bottom: 0.25rem;
 }
 
 .field input,
@@ -220,6 +307,41 @@ main > * + * {
 .field select:focus,
 .field textarea:focus {
   border-color: var(--color-indigo);
+}
+
+/* Linha com e-mail, telefone e material preferido lado a lado. */
+.field-row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.field-row .field {
+  flex: 1 1 0;
+}
+
+/* Busca por CEP: o campo cresce e o botão fica do tamanho que precisa. */
+.zip-search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.zip-search .field {
+  flex: 1 1 12rem;
+}
+
+/* O botão não tem rótulo acima, então fica mais baixo que o campo quando
+   os dois são alinhados pela base. Um rótulo fantasma, invisível, ocupa o
+   mesmo espaço do rótulo real e devolve o alinhamento. */
+.zip-search .field-action {
+  flex: 0 0 auto;
+  align-items: flex-start;
+}
+
+.ghost-label {
+  font-weight: bold;
+  visibility: hidden;
 }
 
 /* Botões. O neutro é azul; a cor quente fica para quem avança alguma
@@ -242,9 +364,20 @@ button:hover {
   filter: brightness(1.1);
 }
 
+/* Texto escuro sobre o laranja. Branco sobre laranja dá 2.4 para 1, e o
+   mínimo da WCAG para texto é 4.5 para 1. */
 #search-button,
 button[type="submit"] {
   background: var(--color-action);
+  color: var(--color-carbon);
+}
+
+/* Barra de filtros do catálogo. */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  align-items: center;
 }
 
 .filter {
@@ -258,43 +391,17 @@ button[type="submit"] {
   border-color: var(--color-indigo);
   filter: none;
 }
-.page {
-  max-width: 70rem;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-  "header"
-  "content"
-  "footer";
-  grid-template-rows: auto 1fr auto;
-  min-height: 100dvh;
-}
- 
-.site-header {
-  grid-area: header;display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-2);
 
-}
-.main-nav {
- display: flex;
- flex-wrap: wrap;
- gap: var(--space-2);
+/* Um ponto de quebra só, em 64rem, que são 1024 pixels. Abaixo dele é
+   celular e tablet, e tudo fica em coluna. Acima é o monitor. */
+@media (min-width: 64rem) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.site-footer {
-   grid-area: header;display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-2);
-
-}
-.main-nav {
- display: flex;
- flex-wrap: wrap;
- gap: var(--space-2);
+@media (max-width: 64rem) {
+  .field-row {
+    flex-direction: column;
+  }
 }
